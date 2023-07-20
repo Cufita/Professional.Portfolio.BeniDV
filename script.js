@@ -5,14 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
   menuLinks.forEach((link) => {
     link.addEventListener("click", function (event) {
       event.preventDefault();
+      menuLinks.forEach((link) => link.classList.remove("main-active"));
+      this.classList.add("main-active");
       const sectionName = this.textContent.toLowerCase();
       const contentText = getContentText(sectionName);
       animateContent(contentText);
     });
   });
-
   function getContentText(sectionName) {
-    // Aquí puedes definir el contenido para cada sección del menú
     switch (sectionName) {
       case "about us":
         return `
@@ -39,6 +39,18 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       contentDiv.innerHTML = contentText;
       contentDiv.style.opacity = "1";
-    }, 500); // El tiempo de transición, puedes ajustarlo según prefieras
+    }, 500);
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuLinks = document.querySelectorAll(".nav-link");
+
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      menuLinks.forEach((link) => link.classList.remove("main-active"));
+      this.classList.add("main-active");
+    });
+  });
 });
